@@ -14,11 +14,11 @@ void FindKeiths ( ulong pLimit )
     if (GetVerbose())
         cout << "FindKeiths() Begin" << endl;
 
-
-    // Add method
-
-
-    if (GetVerbose())
+    for (ulong n = 10L; n <= pLimit; n += 1L) {
+        if (IsKeith(n))
+            ;
+    }
+        if (GetVerbose())
         cout << "FindKeiths() Ends" << endl;
 
 }
@@ -47,5 +47,5 @@ bool IsKeith (  ulong pNum  )
 
     if (pNum >= 10L) return true;
 
-    // I think this method is done
+    // ADD METHOD 
 }
