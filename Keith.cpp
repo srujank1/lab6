@@ -28,18 +28,24 @@ void *FindKeithsThread ( void *pState )
 
     if (GetVerbose()) cout << "FindKeithsThread() Begin" << endl;
 
-    // add method
+    ThreadState *state = static_cast<ThreadState *>(pState);
+
+    FindKeiths(state->mLimit);
+
+    state->mExitCode = 0;
 
     if (GetVerbose()) cout << "FindKeithsThread() Ends" << endl;
 
+    pthread_exit(pState);
+
+    // I think this method is done
 }
 
 bool IsKeith (  ulong pNum  )
 {
-
     if (pNum < 10L) return false;
+
     if (pNum >= 10L) return true;
 
-    // I think this is done because what else makes Keith? 
-
+    // I think this method is done
 }
