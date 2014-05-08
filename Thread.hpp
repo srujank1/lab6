@@ -11,7 +11,7 @@
 // Typedefs
 //==============================================================================================================
 typedef struct {
-    ulong       mLimit;     // Upper limit of numbers to test 
+    ulong       mLimit;     // Upper limit of numbers to test
     int         mStarted;   // True if the thread started successfully
     int         mExitCode;  // Thread exit code
     pthread_t   mThreadId;  // Thread ID
