@@ -26,11 +26,13 @@
 // If state->mStarted is 0, then the thread started successfully, so assign state->mThreadId the threadId.
 // Return 'state'
 //-------------------------------------------------------------------------------------------------------------
-ThreadState *state;
-state->mLimit=pLimit;
-pthread_t threadId;
-state->mStarted=pthread_create(&threadId, 0, pFunction, state<void*>(&ThreadState));
-if(state->mStarted==0){
-    state->mThreadId=threadId;
+ThreadState *StartThread(ThreadFunction const pFunction, ulong const pLimit){
+	ThreadState *state;
+	state->mLimit=pLimit;
+	pthread_t threadId;
+	state->mStarted=pthread_create(&threadId, 0, pFunction, state<void*>());
+	if(state->mStarted==0){
+		    state->mThreadId=threadId;
+	}
+	return state;
 }
-return state;

@@ -135,7 +135,8 @@ static void Parallel
     if (amicableState->mStarted != 0) Error("Failed to start FindAmicable thread");
 
     // Start the thread to find the Keith numbers.
-    ???
+    ThreadState *keithState = StartThread(FindKeithsThread, gGlobals.mKeithLimit);
+    if(keithState->mStarted !=0) Error("Failed to start FindKeith thread");
 }
 
 //--------------------------------------------------------------------------------------------------------------
@@ -156,8 +157,8 @@ static void ParseCmdLine
     else if (mode == "--parallel") gGlobals.mRunMode = parallel;
     else { Help(); Error(""); }
     gGlobals.mPrimeLimit = atol(pArgv[2]);
-    gGlobals.mAmicableLimit = atol(pArgv[3]);   
-    gGlobals.mKeithLimit = atol(pArgv[4]);  
+    gGlobals.mAmicableLimit = atol(pArgv[3]);
+    gGlobals.mKeithLimit = atol(pArgv[4]);
     if (pArgc == 6) {
         string verbose(pArgv[5]);
         if (verbose == "--verbose") gGlobals.mVerbose = true;
@@ -175,4 +176,8 @@ static void ParseCmdLine
 // Call FindAmicable()
 // Call FindKeiths()
 //--------------------------------------------------------------------------------------------------------------
-???
+static void Serial(){
+	FindPrimes(gGlobals.mPrimeLimit);
+	FindAmicable(gGlobals.mAmicableLimit);
+	FindKeiths(gGlobals.mKeithLimit);
+}
