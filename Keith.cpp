@@ -44,8 +44,54 @@ void *FindKeithsThread ( void *pState )
 bool IsKeith (  ulong pNum  )
 {
     if (pNum < 10L) return false;
-
     if (pNum >= 10L) return true;
 
-    // ADD METHOD 
+    int length = 1;
+    ulong sum =0;
+    ulong x = pNum;
+
+    // Find the length of the number
+    while ( x /= 10 )
+    {
+        length++;
+    }
+
+    ulong *arr= new ulong[length];
+    x = pNum;
+    // put the number in to arr. Ex: 17 = arr[0] =1, arr[1] = 7;
+    for( int i =length-1; i >= 0 ; i--)
+    {
+        arr[i]= x%10;
+        x = x/10;
+    }
+
+
+    while(sum < pNum)
+    {
+        sum =0;
+        for( int i = 0; i< length; i++ )
+        {
+           sum = sum + arr[i];
+
+        }
+        for(int i = 0; i < length; i++)
+        {
+               arr[i]=arr[i+1];
+        }
+        arr[length -1] = sum;
+    }
+
+    delete[] arr;
+
+    if(sum == x )
+    {
+        return true;
+
+    }
+    if(sum != x )
+    {
+        return false;
+
+    }
+
 }
