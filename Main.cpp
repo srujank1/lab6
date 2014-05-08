@@ -177,6 +177,7 @@ static void ParseCmdLine
 // Call FindKeiths()
 //--------------------------------------------------------------------------------------------------------------
 static void Serial(){
+
 	FindPrimes(gGlobals.mPrimeLimit);
 	FindAmicable(gGlobals.mAmicableLimit);
 	FindKeiths(gGlobals.mKeithLimit);
