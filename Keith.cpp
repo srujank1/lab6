@@ -44,7 +44,6 @@ void *FindKeithsThread ( void *pState )
 bool IsKeith (  ulong pNum  )
 {
     if (pNum < 10L) return false;
-    if (pNum >= 10L) return true;
 
     int length = 1;
     ulong sum =0;
@@ -82,6 +81,7 @@ bool IsKeith (  ulong pNum  )
     }
 
     delete[] arr;
+    x=pNum;
 
     if(sum == x )
     {
