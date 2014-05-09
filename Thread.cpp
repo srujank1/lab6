@@ -6,7 +6,7 @@
 #include "Main.hpp"
 #include "Prime.hpp"
 #include "Thread.hpp"
-
+#include <iostream>
 //==============================================================================================================
 // Function Definitions
 //==============================================================================================================
@@ -27,10 +27,12 @@
 // Return 'state'
 //-------------------------------------------------------------------------------------------------------------
 ThreadState *StartThread(ThreadFunction const pFunction, ulong const pLimit){
+    std::cout<<"HERE"<<std::endl;
 	ThreadState *state;
 	state->mLimit=pLimit;
 	pthread_t threadId;
-	state->mStarted=pthread_create(&threadId, 0, pFunction, static_cast<void*>(&state));
+	state->mStarted=pthread_create(&threadId, NULL, pFunction, static_cast<void*>(&state));
+	std::cout<<"state thing "<<state->mStarted<<endl;
 	if(state->mStarted==0){
 		    state->mThreadId=threadId;
 	}

@@ -81,8 +81,11 @@ int main
     char *pArgv[]
     )
 {
+    cout<<"Started"<<endl;
     ParseCmdLine(pArgc, pArgv);
+    cout<<"out of ParseCmdLine"<<endl;
     gGlobals.mRunMode == serial ? Serial() : Parallel();
+    cout<<"about to close"<<endl;
     pthread_exit(NULL);
 }
 
@@ -128,12 +131,15 @@ static void Parallel
     (
     )
 {
+    cout<<"started parallel"<<endl;
     ThreadState *primesState = StartThread(FindPrimesThread, gGlobals.mPrimeLimit);
+    cout<<"whatever this is"<<endl;
+    cout<<primesState->mStarted<<endl;
     if (primesState->mStarted != 0) Error("Failed to start FindPrimes thread");
-
+    cout<<"finished primes"<<endl;
     ThreadState *amicableState = StartThread(FindAmicableThread, gGlobals.mAmicableLimit);
     if (amicableState->mStarted != 0) Error("Failed to start FindAmicable thread");
-
+    cout<<"finished amicable"<<endl;
     // Start the thread to find the Keith numbers.
     ThreadState *keithState = StartThread(FindKeithsThread, gGlobals.mKeithLimit);
     if(keithState->mStarted !=0) Error("Failed to start FindKeith thread");
@@ -153,6 +159,7 @@ static void ParseCmdLine
     gGlobals.mVerbose = false;
     if (pArgc < 6) { Help(); Error(""); }
     string mode(pArgv[1]);
+    cout<<"This place"<<endl;
     if (mode == "--serial") gGlobals.mRunMode = serial;
     else if (mode == "--parallel") gGlobals.mRunMode = parallel;
     else { Help(); Error(""); }
